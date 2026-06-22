@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agoda - หน้าแรก</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            thai: ['Noto Sans Thai', 'sans-serif'],
+          },
+          colors: {
+            agoda: {
+              blue: '#005999',
+              'blue-light': '#0071c2',
+              navy: '#1a1a2e',
+              'dark-nav': '#1a1a2e',
+              red: '#e74c3c',
+              orange: '#c0673e',
+              gold: '#c9a227',
+              gray: '#6b7280',
+              'light-bg': '#f5f5f5',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ============================================================
+       Agoda Prototype — Custom Styles
+       ============================================================ */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans Thai', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hero-bg {
+      background: linear-gradient(160deg, #3b6fa0 0%, #5a8abf 30%, #7dafd8 55%, #b0cce0 75%, #d4e4f0 90%, #e8f0f5 100%);
+      position: relative;
+    }
+
+    .cloud-shape {
+      width: 120px;
+      height: 50px;
+      background: white;
+      border-radius: 50px;
+      position: absolute;
+      box-shadow: 40px 15px 0 10px white, -30px 10px 0 5px white;
+    }
+
+    #navbar {
+      background-color: white;
+    }
+
+    .bg-agoda-dark-nav {
+      background-color: #1a1a2e;
+    }
+
+    .bg-agoda-blue {
+      background-color: #005999;
+    }
+
+    .text-agoda-blue {
+      color: #005999;
+    }
+
+    .border-agoda-blue {
+      border-color: #005999;
+    }
+
+    .hover\:bg-blue-700:hover {
+      background-color: #0057a3;
+    }
+
+    .search-tab {
+      transition: all 0.2s ease;
+    }
+
+    .active-tab {
+      color: #005999;
+      border-bottom: 2px solid #005999;
+      background-color: #eff6ff;
+      border-radius: 8px 8px 0 0;
+      font-weight: 600;
+    }
+
+    .active-toggle {
+      border-color: #005999 !important;
+      color: #005999 !important;
+      background-color: #eff6ff !important;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    @keyframes flexiPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+      }
+    }
+
+    .flexi-badge-pulse {
+      animation: flexiPulse 2s infinite;
+    }
+
+    .step-tab {
+      border-color: #e5e7eb;
+      color: #6b7280;
+      background: white;
+      transition: all 0.15s ease;
+    }
+
+    .step-tab.active-step-tab {
+      border-color: #f97316;
+      color: #ea580c;
+      background: #fff7ed;
+      font-weight: 700;
+    }
+
+    @keyframes stepFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .step-animate {
+      animation: stepFadeIn 0.3s ease forwards;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #fed7aa;
+      border-top-color: #f97316;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes dotBounce {
+
+      0%,
+      80%,
+      100% {
+        transform: scale(0.7);
+        opacity: 0.5;
+      }
+
+      40% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+    }
+
+    .dot-bounce span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #f97316;
+      margin: 0 2px;
+    }
+
+    .dot-bounce span:nth-child(1) {
+      animation: dotBounce 1.2s infinite 0s;
+    }
+
+    .dot-bounce span:nth-child(2) {
+      animation: dotBounce 1.2s infinite 0.2s;
+    }
+
+    .dot-bounce span:nth-child(3) {
+      animation: dotBounce 1.2s infinite 0.4s;
+    }
+
+    @keyframes checkDraw {
+      from {
+        stroke-dashoffset: 100;
+      }
+
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .check-animated {
+      stroke-dasharray: 100;
+      animation: checkDraw 0.6s ease 0.3s forwards;
+      stroke-dashoffset: 100;
+    }
+
+    .compare-col-highlight {
+      background: linear-gradient(180deg, #fff7ed 0%, #ffedd5 100%);
+      border: 2px solid #f97316;
+      border-radius: 12px;
+    }
+
+    .progress-bar-animated {
+      transition: width 1.2s ease;
+    }
+
+    @keyframes scaleIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .scale-in {
+      animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .booking-status-tab.active {
+      border-color: #005999;
+      color: #005999;
+    }
+
+    aside nav a.active {
+      background-color: #eff6ff;
+      color: #005999;
+      border-right: 2px solid #005999;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .hero-bg {
+        min-height: 340px;
+      }
+
+      #flexi-modal>div:last-child {
+        margin: 0;
+        border-radius: 16px 16px 0 0;
+        max-height: 95vh;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    }
+  </style>
+</head>
+
+<body class="font-thai bg-white text-gray-800">
+  <!-- ========================================================
+       PAGE: HOME (index)
+       ======================================================== -->
+  <div id="page-home">
+    <!-- ── NAVBAR ─────────────────────────────────────────── -->
+    <nav id="navbar" class="bg-white py-2 sticky top-0 z-50 shadow-sm border-b border-gray-200">
+      <div class="max-w-[1480px] mx-auto px-4 py-3 flex items-center justify-between h-[52px]">
+        <div class="flex items-center gap-1 h-full">
+          <a href="#" class="flex items-center flex-shrink-0 mr-4">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Agoda_transparent_logo.png" alt="Logo"
+              class="h-8 md:h-14 w-auto object-contain" />
+          </a>
+          <div class="relative flex items-center h-full px-1">
+            <span
+              class="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-bold px-1.5 py-[2px] rounded-sm leading-tight whitespace-nowrap">จองเป็นแพ็ก
+              ประหยัดกว่า!</span>
+            <a href="#"
+              class="text-[15px] text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded px-2.5 py-1.5 transition whitespace-nowrap font-medium mt-1">ตั๋วเครื่องบิน
+              + ที่พัก</a>
+          </div>
+          <div class="flex items-center h-full px-1">
+            <a href="#"
+              class="text-[15px] text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded px-2.5 py-1.5 transition whitespace-nowrap font-medium mt-1">ที่พัก</a>
+          </div>
+          <div class="relative flex items-center h-full px-1">
+            <span
+              class="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-bold px-1.5 py-[2px] rounded-sm leading-tight whitespace-nowrap">ใหม่!</span>
+            <a href="#"
+              class="text-[15px] text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded px-2.5 py-1.5 transition flex items-center gap-1 whitespace-nowrap font-medium mt-1">
+              บริการเดินทางขนส่ง
+              <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+          <div class="flex items-center h-full px-1">
+            <a href="#"
+              class="text-[15px] text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded px-2.5 py-1.5 transition whitespace-nowrap font-medium mt-1">กิจกรรม</a>
+          </div>
+          <div class="hidden lg:flex items-center h-full px-1">
+            <a href="#"
+              class="text-[15px] text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded px-2.5 py-1.5 transition whitespace-nowrap font-medium mt-1">คูปองส่วนลด
+              + ข้อเสนอพิเศษ</a>
+          </div>
+          <div class="flex items-center h-full px-1">
+            <button
+              class="text-[15px] text-gray-500 hover:text-gray-800 hover:bg-gray-100 rounded px-2 py-1.5 transition font-bold mt-1">•••</button>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <button
+            class="hidden md:block border border-gray-400 text-blue-600 text-[15px] px-6 py-2 rounded-full hover:bg-gray-100 transition whitespace-nowrap font-medium">
+            ลงประกาศที่พัก
+          </button>
+          <button
+            class="flex items-center hover:bg-gray-100 px-2 py-1.5 rounded transition font-medium text-gray-700 text-[15px]">
+            TH
+          </button>
+          <button class="flex items-center hover:bg-gray-100 px-1.5 py-1.5 rounded transition">
+            <span class="text-black rounded px-1.5 py-1 text-[15px] font-extrabold leading-none"
+              style="color: #333;">฿</span>
+          </button>
+          <div class="w-px h-5 bg-gray-300 mx-1"></div>
+          <!-- Profile + Wallet dropdown wrapper -->
+          <div class="relative" id="profile-dropdown-wrapper">
+            <div class="flex items-center cursor-pointer" onclick="toggleProfileDropdown()">
+              <button id="btn-profile"
+                class="flex items-center gap-2 hover:bg-gray-100 px-2 py-1 rounded-lg transition">
+                <div
+                  class="w-8 h-8 rounded-full bg-orange-500 flex pt-1 items-center justify-center font-bold text-[18px] text-white flex-shrink-0">
+                  T
+                </div>
+                <div class="hidden md:block text-left">
+                  <div class="text-[15px] font-semibold leading-tight text-gray-800">TUNPISIT J.</div>
+                  <div class="flex items-center gap-1 mt-[2px]">
+                    <span
+                      class="bg-gray-800 border border-yellow-500/70 text-yellow-400 text-[9px] px-1.5 py-[1px] rounded-sm font-bold leading-tight">★
+                      VIP</span>
+                    <span class="text-white text-[9px] px-1.5 py-[1px] rounded-sm font-bold leading-tight"
+                      style="background:#c0673e">บรอนซ์</span>
+                  </div>
+                </div>
+              </button>
+              <div class="flex items-center gap-0.5 hover:bg-gray-100 px-2 py-1.5 rounded transition">
+                <span class="text-green-600 text-[15px] pb-5 font-bold">$</span>
+                <span class="text-[15px] text-green-600 font-medium">B 0</span>
+                <svg class="w-3 h-3 text-gray-500 ml-0.5 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
+            <!-- Dropdown menu -->
+            <div id="profile-dropdown"
+              class="hidden absolute right-0 top-[calc(100%+8px)] w-72 bg-white rounded-xl shadow-xl border border-gray-200 z-[200] overflow-hidden">
+              <!-- Account section -->
+              <div class="px-4 py-1">
+                <div class="text-xs font-bold text-gray-800 py-2">บัญชีของฉัน</div>
+                <a href="bookings.html"
+                  class="flex items-center justify-between py-2 text-sm text-gray-700 hover:text-agoda-blue transition">ทริปของฉัน</a>
+                <a href="#"
+                  class="flex items-center justify-between py-2 text-sm text-gray-700 hover:text-agoda-blue transition">ข้อความจากที่พัก</a>
+                <a href="#"
+                  class="flex items-center justify-between py-2 text-sm text-gray-700 hover:text-agoda-blue transition">
+                  <span>AgodaCash</span>
+                  <span class="bg-agoda-blue text-white text-xs px-2 py-0.5 rounded font-medium">฿ 0</span>
+                </a>
+                <a href="#"
+                  class="flex items-center justify-between py-2 text-sm text-gray-700 hover:text-agoda-blue transition">แดชแบ็กรีวอร์ด</a>
+                <a href="#"
+                  class="flex items-center justify-between py-2 text-sm text-gray-700 hover:text-agoda-blue transition">
+                  <span>AgodaVIP</span>
+                  <div class="flex items-center gap-1">
+                    <span
+                      class="bg-gray-800 border border-yellow-500/70 text-yellow-400 text-[9px] px-1.5 py-[1px] rounded-sm font-bold">★
+                      VIP</span>
+                    <span class="text-white text-[9px] px-1.5 py-[1px] rounded-sm font-bold"
+                      style="background:#c0673e">บรอนซ์</span>
+                  </div>
+                </a>
+                <a href="#"
+                  class="flex items-center justify-between py-2 text-sm text-gray-700 hover:text-agoda-blue transition">ที่พักถูกใจ</a>
+                <a href="#"
+                  class="flex items-center justify-between py-2 text-sm text-gray-700 hover:text-agoda-blue transition">รีวิวที่พัก</a>
+                <a href="#"
+                  class="flex items-center justify-between py-2 text-sm text-gray-700 hover:text-agoda-blue transition">
+                  <span>พอยต์แม็กซ์</span>
+                  <span
+                    class="w-5 h-5 rounded-full border border-gray-400 flex items-center justify-center text-gray-500 text-[10px] font-bold">P</span>
+                </a>
+                <a href="#"
+                  class="flex items-center justify-between py-2 text-sm text-gray-700 hover:text-agoda-blue transition">ข้อมูลส่วนตัวของฉัน</a>
+              </div>
+              <!-- Logout -->
+              <div class="px-4 py-3 border-t border-gray-100">
+                <button
+                  class="w-full border border-agoda-blue text-agoda-blue text-sm py-2 rounded-lg hover:bg-blue-50 transition font-medium">
+                  ออกจากระบบ
+                </button>
+              </div>
+              <!-- Settings section -->
+              <div class="px-4 py-1 border-t border-gray-100">
+                <div class="text-xs font-bold text-gray-800 py-2">การตั้งค่า</div>
+                <a href="#" class="flex items-center gap-2 py-2 text-sm text-gray-700 hover:text-agoda-blue transition">
+                  <span>🇹🇭</span><span>ภาษาไทย</span>
+                </a>
+                <a href="#" class="flex items-center gap-2 py-2 text-sm text-gray-700 hover:text-agoda-blue transition">
+                  <span class="font-bold text-gray-600">฿</span><span>บาท</span>
+                </a>
+              </div>
+              <!-- Host section -->
+              <div class="px-4 py-3 border-t border-gray-100 bg-gray-50">
+
+                <div class="text-xs font-bold text-gray-800 mb-1">เปิดบ้านให้เช่ากับโกด้า</div>
+
+                <div class="text-xs text-gray-500 mb-2">เปิดบ้านให้เช่า รับเงินเข้ากระเป๋าสบายๆ</div>
+
+                <a href="#" class="text-sm text-agoda-blue font-semibold hover:underline">ลงประกาศที่พัก</a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- ── END NAVBAR ──────────────────────────────────────── -->
+
+    <section class="relative w-full bg-white pb-16 md:pb-24">
+
+      <div
+        class="absolute top-0 left-0 w-full h-[380px] md:h-[350px] bg-[#7c88a5] rounded-bl-[80px] md:rounded-bl-[50px] z-0 overflow-hidden">
+
+        <div class="absolute bottom-0 left-8 md:left-24 flex flex-col items-center opacity-70 pointer-events-none">
+          <div class="relative" style="margin-bottom:-2px">
+            <div
+              class="w-16 h-24 bg-gradient-to-b from-[#e39c71] to-[#c77a50] rounded-t-full mx-auto border border-[#3e4a61]"
+              style="clip-path:polygon(50% 0%,100% 100%,0% 100%)"></div>
+            <div class="w-24 h-5 bg-[#d48b60] rounded-sm mx-auto border border-[#3e4a61]"></div>
+            <div class="w-32 h-4 bg-[#bd7148] rounded-sm mx-auto border border-[#3e4a61]"></div>
+            <div
+              class="absolute -right-6 top-4 bg-[#f0a500] rounded-full w-10 h-10 flex items-center justify-center text-white font-bold text-lg border-2 border-white drop-shadow-md">
+              %</div>
+          </div>
+        </div>
+
+        <div class="hidden lg:flex absolute bottom-0 right-4 md:right-16 opacity-60 pointer-events-none"
+          style="margin-bottom:-2px">
+          <svg width="220" height="120" viewBox="0 0 220 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 120L100 40L150 120Z" fill="#d49a73" fill-opacity="0.8" stroke="#3e4a61" stroke-width="2" />
+            <path d="M120 120L170 20L220 120Z" fill="#e2ad8b" fill-opacity="0.9" stroke="#3e4a61" stroke-width="2" />
+            <path d="M10 120L30 80h20l10 40H10z" fill="#c28860" stroke="#3e4a61" stroke-width="2" />
+          </svg>
+        </div>
+
+      </div>
+
+      <div class="max-w-[1140px] mx-auto px-4 md:px-8 relative z-10 pt-8 md:pt-9 w-full flex flex-col items-center">
+
+        <h1 class="text-white text-xl md:text-2xl font-extrabold mb-6 md:mb-6 text-center drop-shadow-md tracking-wide">
+          ท่องโลกทั้งใบในราคาถูกลง
+        </h1>
+
+        <div class="flex justify-center w-full relative z-30 -mb-4">
+          <div class="bg-white rounded-xl shadow-md flex overflow-x-auto scrollbar-hide w-full lg:w-max px-2 md:px-4">
+            <button
+              class="flex items-center justify-center gap-2 px-3 md:px-4 py-3.5 text-[15px] font-bold text-[#1a73e8] border-b-[3px] border-[#1a73e8] whitespace-nowrap min-w-max">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              ที่พัก
+            </button>
+            <button
+              class="flex items-center justify-center gap-2 px-3 md:px-4 py-3.5 text-[15px] font-medium text-gray-700 hover:text-[#1a73e8] hover:bg-gray-50 border-b-[3px] border-transparent whitespace-nowrap transition min-w-max">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+              </svg>
+              ตั๋วเครื่องบิน
+            </button>
+            <button
+              class="flex items-center justify-center gap-2 px-3 md:px-4 py-3.5 text-[15px] font-medium text-gray-700 hover:text-[#1a73e8] hover:bg-gray-50 border-b-[3px] border-transparent whitespace-nowrap transition min-w-max">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+              </svg>
+              บ้านและอพาร์ตเมนต์
+            </button>
+            <button
+              class="flex items-center justify-center gap-2 px-3 md:px-4 py-3.5 text-[15px] font-medium text-gray-700 hover:text-[#1a73e8] hover:bg-gray-50 border-b-[3px] border-transparent whitespace-nowrap transition min-w-max">
+              <svg
+                  class="w-5 h-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  fill="currentColor">
+                  <path d="M404 207.9L204.7 104.2C196.7 100.1 187.4 99.4 179 102.5L137.9 117.5C127.6 121.2 124.1 133.9 130.8 142.5L232.3 270.4L132.1 306.8L72 270.2C65.8 266.4 58.2 265.7 51.3 268.1L35 274.1C25.6 277.5 21.6 288.6 26.7 297.2L80.3 389C95.9 415.7 128.4 427.4 157.4 416.8L170.3 412.1L170.3 412.1L568.7 267.1C597.8 256.5 612.7 224.4 602.2 195.3C591.7 166.2 559.5 151.3 530.4 161.8L404 207.9zM64.2 512C46.5 512 32.2 526.3 32.2 544C32.2 561.7 46.5 576 64.2 576L576.2 576C593.9 576 608.2 561.7 608.2 544C608.2 526.3 593.9 512 576.2 512L64.2 512z"/>
+                </svg>
+              ตั๋วเครื่องบิน + ที่พัก
+            </button>
+            <button
+              class="flex items-center justify-center gap-2 px-3 md:px-4 py-3.5 text-[15px] font-medium text-gray-700 hover:text-[#1a73e8] hover:bg-gray-50 border-b-[3px] border-transparent whitespace-nowrap transition min-w-max">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+              </svg>
+              กิจกรรม
+            </button>
+            <button
+              class="flex items-center justify-center gap-2 px-3 md:px-4 py-3.5 text-[15px] font-medium text-gray-700 hover:text-[#1a73e8] hover:bg-gray-50 border-b-[3px] border-transparent whitespace-nowrap transition min-w-max">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z" />
+              </svg>
+              บริการรับส่งสนามบิน
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full px-6 py-6 md:px-10 md:pt-10 md:pb-10 relative z-20">
+
+          <div class="flex gap-3 mb-5">
+            <button
+              class="px-5 py-2 rounded-full text-[14px] font-bold border-2 border-[#1a73e8] text-[#1a73e8] bg-blue-50/50 transition">
+              การเข้าพักข้ามคืน
+            </button>
+            <button
+              class="px-5 py-2 rounded-full text-[14px] font-medium border border-gray-300 text-gray-600 hover:border-[#1a73e8] hover:text-[#1a73e8] transition">
+              การเข้าพักช่วงกลางวัน
+            </button>
+          </div>
+
+          <div class="mb-4">
+            <div
+              class="flex items-center border border-gray-300 rounded-lg px-4 py-3.5 hover:border-[#1a73e8] focus-within:border-[#1a73e8] transition cursor-text group">
+              <svg class="w-6 h-6 text-gray-500 mr-3 group-focus-within:text-[#1a73e8] transition flex-shrink-0"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input type="text" placeholder="ใส่จุดหมายปลายทางหรือชื่อที่พัก"
+                class="w-full outline-none text-[15px] text-gray-800 placeholder-gray-500" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-6">
+
+            <div
+              class="md:col-span-7 flex border border-gray-300 rounded-lg hover:border-[#1a73e8] transition divide-x divide-gray-300">
+              <div class="flex-1 px-4 py-3 flex items-center cursor-pointer hover:bg-gray-50 rounded-l-lg">
+                <svg class="w-6 h-6 text-gray-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <div>
+                  <div class="text-[15px] font-semibold text-gray-800">29 มิ.ย. 2026</div>
+                  <div class="text-[13px] text-gray-500 mt-[1px]">จันทร์</div>
+                </div>
+              </div>
+              <div class="flex-1 px-4 py-3 flex items-center cursor-pointer hover:bg-gray-50 rounded-r-lg">
+                <svg class="w-6 h-6 text-gray-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <div>
+                  <div class="text-[15px] font-semibold text-gray-800">30 มิ.ย. 2026</div>
+                  <div class="text-[13px] text-gray-500 mt-[1px]">อังคาร</div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="md:col-span-5 border border-gray-300 rounded-lg px-4 py-3 flex items-center justify-between hover:border-[#1a73e8] hover:bg-gray-50 transition cursor-pointer">
+              <div class="flex items-center">
+                <svg class="w-6 h-6 text-gray-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <div>
+                  <div class="text-[15px] font-semibold text-gray-800">ผู้ใหญ่ 2 คน</div>
+                  <div class="text-[13px] text-gray-500 mt-[1px]">1 ห้อง</div>
+                </div>
+              </div>
+              <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <label class="flex items-center gap-3 cursor-pointer w-max group">
+              <div
+                class="w-[18px] h-[18px] border-2 border-gray-400 rounded-sm group-hover:border-[#1a73e8] transition flex items-center justify-center">
+              </div>
+              <span class="text-[14px] text-gray-800 font-medium">แสดงที่พักแบบบ้านทั้งหลังและอพาร์ตเมนต์เท่านั้น</span>
+            </label>
+
+            <button
+              class="flex items-center gap-1.5 text-[#1a73e8] font-bold text-[15px] hover:text-blue-800 transition w-max">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+              </svg>
+              จองตั๋วเครื่องบิน + ที่พัก
+            </button>
+          </div>
+
+          <div class="absolute -bottom-[26px] left-1/2 -translate-x-1/2 w-[90%] md:w-[480px]">
+            <button
+              class="w-full bg-[#1a73e8] hover:bg-blue-700 active:scale-95 text-white font-bold text-lg py-2 rounded-full transition-all">
+              ค้นหา
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-2 px-10">
+      <div class="max-w-[1100px] mx-auto">
+        <h2 class="text-xl font-bold mb-6" style="color:#1a2a4a">ที่เที่ยวยอดนิยมในประเทศไทย</h2>
+
+        <div class="relative">
+
+          <button id="dest-prev" onclick="scrollDestinations('left')"
+            style="display:none;position:absolute;left:-20px;top:96px;width:40px;height:40px;background:#fff;border:1px solid #e5e7eb;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.15);align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:box-shadow 0.2s;"
+            onmouseover="this.style.boxShadow='0 6px 18px rgba(0,0,0,0.22)'"
+            onmouseout="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'">
+            <svg width="20" height="20" fill="none" stroke="#4b5563" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <div class="flex gap-4 overflow-x-auto scrollbar-hide pb-2" id="destinations-scroll">
+
+            <div class="dest-card flex-shrink-0 w-[190px] cursor-pointer group text-center">
+              <div class="rounded-2xl overflow-hidden mb-2" style="height:190px;background:#c8d8ea">
+                <img src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=400&q=80&fit=crop"
+                  alt="กรุงเทพ" class="w-full h-full object-cover transition duration-300" />
+              </div>
+              <div class="font-semibold text-gray-800 text-sm group-hover:underline">กรุงเทพ</div>
+              <div class="text-xs text-gray-500 mt-0.5 group-hover:underline">12,048 ที่พัก</div>
+            </div>
+
+            <div class="dest-card flex-shrink-0 w-[190px] cursor-pointer group text-center">
+              <div class="rounded-2xl overflow-hidden mb-2" style="height:190px;background:#a8c4d8">
+                <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=400&q=80&fit=crop" alt="พัทยา"
+                  class="w-full h-full object-cover transition duration-300" />
+              </div>
+              <div class="font-semibold text-gray-800 text-sm group-hover:underline">พัทยา</div>
+              <div class="text-xs text-gray-500 mt-0.5 group-hover:underline">11,909 ที่พัก</div>
+            </div>
+
+            <div class="dest-card flex-shrink-0 w-[190px] cursor-pointer group text-center">
+              <div class="rounded-2xl overflow-hidden mb-2" style="height:190px;background:#b8ccd8">
+                <img src="https://cdn.ananda.co.th/blog/thegenc/wp-content/uploads/2024/03/934-x-550-px-1.png"
+                  alt="ชลบุรี" class="w-full h-full object-cover transition duration-300" />
+              </div>
+              <div class="font-semibold text-gray-800 text-sm group-hover:underline">ชลบุรี</div>
+              <div class="text-xs text-gray-500 mt-0.5 group-hover:underline">1,144 ที่พัก</div>
+            </div>
+
+            <div class="dest-card flex-shrink-0 w-[190px] cursor-pointer group text-center">
+              <div class="rounded-2xl overflow-hidden mb-2" style="height:190px;background:#d4c0a0">
+                <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?w=400&q=80&fit=crop"
+                  alt="เชียงใหม่" class="w-full h-full object-cover transition duration-300" />
+              </div>
+              <div class="font-semibold text-gray-800 text-sm group-hover:underline">เชียงใหม่</div>
+              <div class="text-xs text-gray-500 mt-0.5 group-hover:underline">7,193 ที่พัก</div>
+            </div>
+
+            <div class="dest-card flex-shrink-0 w-[190px] cursor-pointer group text-center">
+              <div class="rounded-2xl overflow-hidden mb-2" style="height:190px;background:#b8d4e8">
+                <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&q=80&fit=crop"
+                  alt="หัวหิน/ชะอำ" class="w-full h-full object-cover transition duration-300" />
+              </div>
+              <div class="font-semibold text-gray-800 text-sm group-hover:underline">หัวหิน/ชะอำ</div>
+              <div class="text-xs text-gray-500 mt-0.5 group-hover:underline">5,328 ที่พัก</div>
+            </div>
+
+            <div class="dest-card flex-shrink-0 w-[190px] cursor-pointer group text-center">
+              <div class="rounded-2xl overflow-hidden mb-2" style="height:190px;background:#a0c0d4">
+                <img src="https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=400&q=80&fit=crop" alt="ภูเก็ต"
+                  class="w-full h-full object-cover transition duration-300" />
+              </div>
+              <div class="font-semibold text-gray-800 text-sm group-hover:underline">ภูเก็ต</div>
+              <div class="text-xs text-gray-500 mt-0.5 group-hover:underline">9,512 ที่พัก</div>
+            </div>
+
+            <div class="dest-card flex-shrink-0 w-[190px] cursor-pointer group text-center">
+              <div class="rounded-2xl overflow-hidden mb-2" style="height:190px;background:#90b8c8">
+                <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=400&q=80&fit=crop" alt="กระบี่"
+                  class="w-full h-full object-cover transition duration-300" />
+              </div>
+              <div class="font-semibold text-gray-800 text-sm group-hover:underline">กระบี่</div>
+              <div class="text-xs text-gray-500 mt-0.5 group-hover:underline">3,847 ที่พัก</div>
+            </div>
+
+            <div class="dest-card flex-shrink-0 w-[190px] cursor-pointer group text-center">
+              <div class="rounded-2xl overflow-hidden mb-2" style="height:190px;background:#98c4b8">
+                <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=400&q=80&fit=crop" alt="เกาะสมุย"
+                  class="w-full h-full object-cover transition duration-300" />
+              </div>
+              <div class="font-semibold text-gray-800 text-sm group-hover:underline">เกาะสมุย</div>
+              <div class="text-xs text-gray-500 mt-0.5 group-hover:underline">2,615 ที่พัก</div>
+            </div>
+
+          </div>
+
+          <button id="dest-next" onclick="scrollDestinations('right')"
+            style="display:flex;position:absolute;right:-20px;top:96px;width:40px;height:40px;background:#fff;border:1px solid #e5e7eb;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.15);align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:box-shadow 0.2s;"
+            onmouseover="this.style.boxShadow='0 6px 18px rgba(0,0,0,0.22)'"
+            onmouseout="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'">
+            <svg width="20" height="20" fill="none" stroke="#4b5563" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-gray-50 py-8 px-4 border-t border-gray-100">
+      <div class="max-w-[1100px] mx-auto">
+
+        <h2 class="text-xl font-bold text-gray-800 mb-5">
+          คุณ TUNPISIT ยินดีต้อนรับกลับสู่โกด้า - คุณเป็นสมาชิก
+          <span class="inline-flex items-center gap-1 ml-1">
+            <span
+              class="bg-gray-800 border border-yellow-500/50 text-yellow-400 text-xs px-2 py-0.5 rounded font-bold">★
+              VIP</span>
+            <span class="text-white text-xs px-2 py-0.5 rounded font-bold" style="background:#c0673e">บรอนซ์</span>
+          </span>
+          แล้ว
+        </h2>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex flex-col md:flex-row gap-6">
+
+          <div class="flex-shrink-0 w-full md:w-[300px] h-[145px] mt-8 ">
+            <div
+              class="rounded-xl p-5 text-white relative overflow-hidden flex flex-col justify-between h-full min-h-[145px]"
+              style="background: linear-gradient(105deg, #242731 0%, #242731 78%, #a5603a 78%, #a5603a 100%);">
+              <div class="text-base font-bold flex items-center gap-1">★ VIP Bronze</div>
+              <div class="mt-6">
+                <div class="text-[11px] text-gray-300 leading-tight">การจองของท่านในช่วง 2 ปีที่ผ่านมา</div>
+                <div class="text-sm font-bold mt-0.5">0 การจอง</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-1 flex flex-col justify-between">
+            <div>
+              <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                ป้าย VIP คือสัญลักษณ์ที่แสดงว่าท่านกำลังได้รับส่วนลดหรือสิทธิประโยชน์พิเศษสำหรับสมาชิก VIP โดยเฉพาะ
+                ค้นหาและจองที่พักพร้อมข้อเสนอสุดพิเศษ พร้อมสะสมยอดจองเพื่อรักษาสถานะสมาชิก VIP ได้เลย
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6 text-sm">
+                <div class="flex items-center gap-2 text-emerald-600 font-medium">
+                  <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  รับประกันราคาดีที่สุด
+                </div>
+                <div class="flex items-center gap-2 text-emerald-600 font-medium">
+                  <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  ส่วนลดสมาชิก VIP ลดสูงสุด 10%
+                </div>
+                <div class="flex items-center gap-2 text-emerald-600 font-medium">
+                  <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  ราคาพิเศษสำหรับสมาชิก
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-1 text-xs text-center overflow-x-auto pt-1">
+
+              <div class="flex flex-col items-center gap-1 flex-shrink-0 w-14">
+                <div
+                  class="w-8 h-8 rounded-full bg-[#c0673e] flex items-center justify-center text-white text-xs shadow-sm">
+                  ★</div>
+                <span class="text-[#c0673e] font-bold mt-0.5">บรอนซ์</span>
+                <span class="text-emerald-600 font-semibold text-[11px]">สมาชิก</span>
+              </div>
+              <div class="flex-1 h-0.5 bg-gray-200 min-w-[20px] mt-4"></div>
+
+              <div class="flex flex-col items-center gap-1 flex-shrink-0 w-14">
+                <div
+                  class="w-8 h-8 rounded-full border border-gray-300 bg-gray-50 flex items-center justify-center text-gray-400 text-xs">
+                  ★</div>
+                <span class="text-gray-600 font-medium mt-0.5">Silver</span>
+                <span class="text-gray-400 text-[10px]">2 การจอง</span>
+              </div>
+              <div class="flex-1 h-0.5 bg-gray-200 min-w-[20px] mt-4"></div>
+
+              <div class="flex flex-col items-center gap-1 flex-shrink-0 w-14">
+                <div
+                  class="w-8 h-8 rounded-full border border-gray-300 bg-gray-50 flex items-center justify-center text-gray-400 text-xs">
+                  ★</div>
+                <span class="text-gray-600 font-medium mt-0.5">Gold</span>
+                <span class="text-gray-400 text-[10px]">5 การจอง</span>
+              </div>
+              <div class="flex-1 h-0.5 bg-gray-200 min-w-[20px] mt-4"></div>
+
+              <div class="flex flex-col items-center gap-1 flex-shrink-0 w-14">
+                <div
+                  class="w-8 h-8 rounded-full border border-gray-300 bg-gray-50 flex items-center justify-center text-gray-400 text-xs">
+                  ★</div>
+                <span class="text-gray-600 font-medium mt-0.5">Platinum</span>
+                <span class="text-gray-400 text-[10px]">10 การจอง</span>
+              </div>
+              <div class="flex-1 h-0.5 bg-gray-200 min-w-[20px] mt-4"></div>
+
+              <div class="flex flex-col items-center gap-1 flex-shrink-0 w-14">
+                <div
+                  class="w-8 h-8 rounded-full border border-gray-300 bg-gray-50 flex items-center justify-center text-gray-400 text-xs">
+                  ★</div>
+                <span class="text-gray-600 font-medium mt-0.5">Diamond</span>
+                <span class="text-gray-400 text-[10px]">15 การจอง</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="flex-shrink-0 flex items-center justify-center pt-4 md:pt-0 ">
+            <button
+              class="bg-[#1b64da] hover:bg-blue-700 text-white font-medium text-sm px-6 py-2.5 rounded-[30px] transition duration-200 whitespace-nowrap shadow-sm ">
+              ดูข้อมูลเพิ่มเติม
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-8 px-4">
+      <div class="max-w-[1100px] mx-auto relative">
+
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-xl font-bold text-gray-800">โปรโมชั่นสำหรับที่พัก</h2>
+          <a href="#" class="text-agoda-blue text-sm font-semibold hover:underline flex items-center gap-1">
+            ดูทั้งหมด
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <button id="slideLeftBtn"
+          class="hidden absolute left-0 top-[60%] -translate-y-1/2 -translate-x-3 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center cursor-pointer z-10 hover:bg-gray-50 transition duration-200"
+          aria-label="Slide left">
+          <svg class="w-5 h-5 text-gray-700 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <button id="slideRightBtn"
+          class="absolute right-0 top-[60%] -translate-y-1/2 translate-x-3 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center cursor-pointer z-10 hover:bg-gray-50 transition duration-200"
+          aria-label="Slide right">
+          <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <div id="promo-slider" class="flex gap-4 overflow-x-auto scrollbar-hide pb-2 scroll-smooth">
+          <div class="flex-shrink-0 w-80 h-40 rounded-2xl overflow-hidden cursor-pointer group relative">
+            <img src="https://www.thaimiceconnect.com/images/upload/business/3391/19391/news/1691724007.jpg"
+              alt="Promotion Banner" class="w-full h-full object-cover" />
+            <!-- Overlay ตอน Hover -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+          </div>
+
+          <div class="flex-shrink-0 w-80 h-40 rounded-2xl overflow-hidden cursor-pointer group relative">
+            <img src="https://cms.dmpcdn.com/travel/2024/03/06/2326eb30-db6f-11ee-bf7e-2dc8d11af9ff_webp_original.webp"
+              alt="Promotion Banner" class="w-full h-full object-cover" />
+            <!-- Overlay ตอน Hover -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+          </div>
+
+          <div class="flex-shrink-0 w-80 h-40 rounded-2xl overflow-hidden cursor-pointer group relative">
+            <img src="https://www.thaimiceconnect.com/images/upload/editor/source/Article/Thumbnail/1691723803.jpg"
+              alt="Promotion Banner" class="w-full h-full object-cover" />
+            <!-- Overlay ตอน Hover -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+          </div>
+
+          <div class="flex-shrink-0 w-80 h-40 rounded-2xl overflow-hidden cursor-pointer group relative">
+            <img src="https://www.matichon.co.th/wp-content/uploads/2022/04/01-70.jpg"
+              alt="Promotion Banner" class="w-full h-full object-cover" />
+            <!-- Overlay ตอน Hover -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+          </div>
+
+          <div class="flex-shrink-0 w-80 h-40 rounded-2xl overflow-hidden cursor-pointer group relative">
+            <img src="https://st-th-1.byteark.com/assets.punpro.com/cover-contents/i8060/1582625689912-Summer-Calling-%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B9%82%E0%B8%9B%E0%B8%A3.png"
+              alt="Promotion Banner" class="w-full h-full object-cover" />
+            <!-- Overlay ตอน Hover -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+          </div>
+
+          <div class="flex-shrink-0 w-80 h-40 rounded-2xl overflow-hidden cursor-pointer group relative">
+            <img src="https://static.naewna.com/uploads/files2017/images/online-korat_fb-1200x800.jpg"
+              alt="Promotion Banner" class="w-full h-full object-cover" />
+            <!-- Overlay ตอน Hover -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-2 pb-8 px-4">
+      <div class="max-w-[1100px] mx-auto relative">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-xl font-bold text-gray-800">โปรโมชั่นสำหรับเที่ยวบินและกิจกรรมท่องเที่ยว</h2>
+          <a href="#" class="text-agoda-blue text-sm font-semibold hover:underline flex items-center gap-1">
+            ดูทั้งหมด
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <button id="flightLeftBtn"
+          class="hidden absolute left-0 top-[60%] -translate-y-1/2 -translate-x-3 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center cursor-pointer z-10 hover:bg-gray-50 transition duration-200"
+          aria-label="Slide left">
+          <svg class="w-5 h-5 text-gray-700 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <button id="flightRightBtn"
+          class="absolute right-0 top-[60%] -translate-y-1/2 translate-x-3 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center cursor-pointer z-10 hover:bg-gray-50 transition duration-200"
+          aria-label="Slide right">
+          <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <div id="flight-slider" class="flex gap-4 overflow-x-auto scrollbar-hide pb-2 scroll-smooth">
+          <div class="flex-shrink-0 w-80 h-40 rounded-2xl overflow-hidden cursor-pointer group relative">
+            <img src="https://mpics.mgronline.com/pics/Images/568000010756901.JPEG"
+              alt="Promotion Banner" class="w-full h-full object-cover" />
+            <!-- Overlay ตอน Hover -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+          </div>
+
+          <div class="flex-shrink-0 w-80 h-40 rounded-2xl overflow-hidden cursor-pointer group relative">
+            <img src="https://www.gother.com/_next/image?url=https%3A%2F%2Fd3p9pa0orw8xnp.cloudfront.net%2Fimages%2Fupload%2Fbanner%2Ftripleasia%2Fpromotion_thumb_image1781258559.webp&w=1920&q=60"
+              alt="Promotion Banner" class="w-full h-full object-cover" />
+            <!-- Overlay ตอน Hover -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+          </div>
+
+          <div class="flex-shrink-0 w-80 h-40 rounded-2xl overflow-hidden cursor-pointer group relative">
+            <img src="https://www.acnews.net/admin/img_large/9698716.jpg"
+              alt="Promotion Banner" class="w-full h-full object-cover" />
+            <!-- Overlay ตอน Hover -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+          </div>
+
+          <div class="flex-shrink-0 w-80 h-40 rounded-2xl overflow-hidden cursor-pointer group relative">
+            <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/website-1609079886721.jpg"
+              alt="Promotion Banner" class="w-full h-full object-cover" />
+            <!-- Overlay ตอน Hover -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+          </div>
+
+          <div class="flex-shrink-0 w-80 h-40 rounded-2xl overflow-hidden cursor-pointer group relative">
+            <img src="https://s.isanook.com/tr/0/ud/290/1451295/s__139034674.jpg?ip/crop/w670h402/q80/jpg"
+              alt="Promotion Banner" class="w-full h-full object-cover" />
+            <!-- Overlay ตอน Hover -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+          </div>
+
+          <div class="flex-shrink-0 w-80 h-40 rounded-2xl overflow-hidden cursor-pointer group relative">
+            <img src="https://www.kasikornbank.com/th/promotion/creditcard/Documents/Image/Website-Thumbnail%20Bangkok%20Airways%20728x438px-TH_278.jpg"
+              alt="Promotion Banner" class="w-full h-full object-cover" />
+            <!-- Overlay ตอน Hover -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <footer class="bg-[#333] text-gray-400 py-12 px-4">
+      <div class="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+        <div>
+          <h4 class="text-white font-semibold mb-3">ศูนย์ช่วยเหลือ</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition">ติดต่อเรา</a></li>
+            <li><a href="#" class="hover:text-white transition">คำถามที่พบบ่อย</a></li>
+            <li><a href="#" class="hover:text-white transition">วิธีจอง</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3">บริษัท</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition">เกี่ยวกับเรา</a></li>
+            <li><a href="#" class="hover:text-white transition">ร่วมงานกับเรา</a></li>
+            <li><a href="#" class="hover:text-white transition">นักลงทุนสัมพันธ์</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3">จุดหมายปลายทาง</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition">กรุงเทพ</a></li>
+            <li><a href="#" class="hover:text-white transition">ภูเก็ต</a></li>
+            <li><a href="#" class="hover:text-white transition">เชียงใหม่</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3">เป็นพันธมิตรกับเรา</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition">ลงประกาศที่พัก</a></li>
+            <li><a href="#" class="hover:text-white transition">พันธมิตรทางธุรกิจ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="max-w-[1280px] mx-auto mt-8 pt-6 border-t border-gray-700 text-center text-xs text-gray-500">
+        © 2026 Agoda Company Pte. Ltd. · สงวนสิทธิ์ทุกประการ
+        <span class="ml-4 text-gray-400">[ Prototype สำหรับโปรเจกต์วิชา "นวัตกรรมองค์กร" ]</span>
+      </div>
+    </footer>
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>
