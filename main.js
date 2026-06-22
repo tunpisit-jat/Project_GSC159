@@ -260,7 +260,7 @@ var stepContent = {
         </div>
       </div>
 
-      <p class="text-xs text-gray-400 text-center mt-4">กดตัวเลือก "โอนสิทธิ์" หรือ "ขั้นตอนถัดไป" เพื่อดำเนินการต่อ</p>
+      <p class="text-xs text-gray-400 text-center mt-4">กดตัวเลือกด้านบนเพื่อดำเนินการต่อ</p>
     </div>
   `,
 
@@ -406,7 +406,7 @@ var stepContent = {
       <div class="grid grid-cols-3 gap-2 text-center">
         <div class="bg-blue-50 rounded-xl p-2.5">
           <div class="font-bold text-[#1967d2] text-base" id="counter-users">0</div>
-          <div class="text-[10px] text-gray-500">ผู้ใช้ที่ค้นหา</div>
+          <div class="text-[10px] text-gray-500">ผู้ใช้ที่ตรงเงื่อนไข</div>
         </div>
         <div class="bg-[#f3f5f8] rounded-xl p-2.5">
           <div class="font-bold text-gray-700 text-base">0.3s</div>
@@ -498,47 +498,49 @@ var stepContent = {
   // ── Step 6: Success ───────────────────────────────────────
   6: `
     <div class="step-animate">
-      <div class="text-center py-4">
-        <div class="w-24 h-24 mx-auto mb-5 relative scale-in">
-          <div class="w-full h-full rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center shadow-xl shadow-green-300">
-            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="text-center py-2">
+        <div class="w-14 h-14 mx-auto mb-2 relative scale-in">
+          <div class="w-full h-full rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center shadow-lg shadow-green-200">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" class="check-animated"/>
             </svg>
           </div>
         </div>
 
-        <h2 class="text-xl font-extrabold text-gray-800 mb-1">โอนสิทธิ์สำเร็จ!</h2>
-        <p class="text-gray-500 text-sm mb-6">เงินเข้า Agoda Wallet ของคุณแล้ว</p>
+        <h2 class="text-lg font-extrabold text-gray-800 mb-1 mt-7">โอนสิทธิ์สำเร็จ!</h2>
+        <p class="text-gray-500 text-sm mb-4">เงินเข้า Agoda Wallet ของคุณแล้ว</p>
 
-        <div class="bg-gradient-to-br from-[#1967d2] to-blue-800 rounded-2xl p-5 mb-5 text-white shadow-lg shadow-blue-200 scale-in mx-auto max-w-xs">
-          <div class="text-xs text-blue-300 mb-1">Agoda Wallet</div>
-          <div class="text-3xl font-extrabold mb-1">฿7,560</div>
-          <div class="text-xs text-blue-200">โอนเข้าเรียบร้อย · วันนี้</div>
-          <div class="mt-3 pt-3 border-t border-blue-500 flex justify-between items-center text-xs">
-            <span class="text-blue-300">ยอดรวมใน Wallet</span>
-            <span class="font-bold text-white">฿7,560</span>
+        <div class="grid grid-cols-2 gap-3 mb-3 text-left">
+          <div class="bg-gradient-to-br from-[#1967d2] to-blue-800 rounded-2xl p-3 text-white shadow-md shadow-blue-100 scale-in">
+            <div class="text-[10px] text-blue-300 mb-0.5">Agoda Wallet</div>
+            <div class="text-2xl font-extrabold mb-0.5">฿7,560</div>
+            <div class="text-[10px] text-blue-200">โอนเข้าเรียบร้อย · วันนี้</div>
+            <div class="mt-2 pt-2 border-t border-blue-500/60 flex justify-between items-center text-[10px]">
+              <span class="text-blue-300">ยอดรวมใน Wallet</span>
+              <span class="font-bold text-white">฿7,560</span>
+            </div>
           </div>
-        </div>
 
-        <div class="bg-[#f3f5f8] rounded-xl p-4 mb-4 text-left">
-          <div class="text-xs font-bold text-gray-600 mb-3 text-center">สรุปธุรกรรม Flexi-Swap</div>
-          <div class="space-y-2 text-xs">
-            <div class="flex justify-between"><span class="text-gray-500">ที่พัก</span><span class="font-medium">Andaman Bay Resort ภูเก็ต</span></div>
-            <div class="flex justify-between"><span class="text-gray-500">วันที่</span><span class="font-medium">4–7 ก.ค. 2569 (3 คืน)</span></div>
-            <div class="flex justify-between"><span class="text-gray-500">มูลค่าเดิม</span><span class="font-medium">฿8,400</span></div>
-            <div class="flex justify-between"><span class="text-gray-500">ค่าบริการ (10%)</span><span class="text-red-500 font-medium">-฿840</span></div>
-            <div class="flex justify-between font-bold border-t border-gray-200 pt-2 mt-1">
-              <span class="text-green-600">เงินที่ได้รับ</span>
-              <span class="text-green-600 text-base">฿7,560</span>
+          <div class="bg-[#f3f5f8] rounded-xl p-3">
+            <div class="text-[10px] font-bold text-gray-600 mb-1.5 text-center">สรุปธุรกรรม Flexi-Swap</div>
+            <div class="space-y-1 text-[10px]">
+              <div class="flex justify-between"><span class="text-gray-500">ที่พัก</span><span class="font-medium">Andaman Bay</span></div>
+              <div class="flex justify-between"><span class="text-gray-500">วันที่</span><span class="font-medium">4–7 ก.ค. 2569</span></div>
+              <div class="flex justify-between"><span class="text-gray-500">มูลค่าเดิม</span><span class="font-medium">฿8,400</span></div>
+              <div class="flex justify-between"><span class="text-gray-500">ค่าบริการ (10%)</span><span class="text-red-500 font-medium">-฿840</span></div>
+              <div class="flex justify-between font-bold border-t border-gray-200 pt-1 mt-0.5">
+                <span class="text-green-600">เงินที่ได้รับ</span>
+                <span class="text-green-600">฿7,560</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="flex gap-3 flex-col sm:flex-row">
-          <button onclick="closeFlexiModal()" class="flex-1 bg-[#1967d2] hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition text-sm">
+        <div class="flex gap-3">
+          <button onclick="closeFlexiModal()" class="flex-1 bg-[#1967d2] hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl transition text-sm">
             ใช้เงินใน Wallet จองที่พักใหม่
           </button>
-          <button onclick="closeFlexiModal()" class="flex-1 border border-gray-300 text-gray-600 hover:bg-gray-50 font-medium py-3 rounded-xl transition text-sm">
+          <button onclick="closeFlexiModal()" class="flex-1 border border-gray-300 text-gray-600 hover:bg-gray-50 font-medium py-2.5 rounded-xl transition text-sm">
             กลับหน้าการจอง
           </button>
         </div>
@@ -579,26 +581,32 @@ function renderStep(n) {
   var btnPrev = document.getElementById('btn-prev');
   var btnNext = document.getElementById('btn-next');
 
-  btnPrev.style.visibility = n === 1 ? 'hidden' : 'visible';
+  // Steps 2, 3, 5 have a specific confirm button inside the content;
+  // Step 6 (success) has two descriptive buttons inside — no footer CTA needed.
+  var stepsWithInContentCTA = [2, 3, 5, 6];
+  var hasInContentCTA = stepsWithInContentCTA.indexOf(n) !== -1;
 
-  var blueBtn = 'bg-[#1967d2] hover:bg-blue-700 text-white font-bold text-sm px-6 py-2.5 rounded-xl flex items-center gap-2 transition shadow-md';
+  // Hide back button on step 1 (nowhere to go) and step 6 (no going back from success)
+  btnPrev.style.visibility = (n === 1 || n === 6) ? 'hidden' : 'visible';
 
-  if (n === totalSteps) {
-    btnNext.className = blueBtn;
-    btnNext.disabled = false;
-    btnNext.textContent = '✓ ปิด';
-    btnNext.onclick = closeFlexiModal;
-  } else if (n === 4) {
-    btnNext.className = 'bg-gray-200 text-gray-400 font-bold text-sm px-6 py-2.5 rounded-xl flex items-center gap-2 cursor-not-allowed';
-    btnNext.disabled = true;
-    btnNext.textContent = 'กำลังค้นหา...';
-    var delay = Math.floor(Math.random() * 3000) + 7000;
-    matchingTimer = setTimeout(function () { matchingTimer = null; nextStep(); }, delay);
+  if (hasInContentCTA) {
+    btnNext.style.display = 'none';
   } else {
-    btnNext.className = blueBtn;
-    btnNext.disabled = false;
-    btnNext.innerHTML = 'ขั้นตอนถัดไป <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>';
-    btnNext.onclick = nextStep;
+    btnNext.style.display = '';
+    var blueBtn = 'bg-[#1967d2] hover:bg-blue-700 text-white font-bold text-sm px-6 py-2.5 rounded-xl flex items-center gap-2 transition shadow-md';
+
+    if (n === 4) {
+      btnNext.className = 'bg-gray-200 text-gray-400 font-bold text-sm px-6 py-2.5 rounded-xl flex items-center gap-2 cursor-not-allowed';
+      btnNext.disabled = true;
+      btnNext.textContent = 'กำลังค้นหา...';
+      var delay = Math.floor(Math.random() * 3000) + 7000;
+      matchingTimer = setTimeout(function () { matchingTimer = null; nextStep(); }, delay);
+    } else {
+      btnNext.className = blueBtn;
+      btnNext.disabled = false;
+      btnNext.innerHTML = 'ขั้นตอนถัดไป <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>';
+      btnNext.onclick = nextStep;
+    }
   }
 
   // Scroll modal content to top
@@ -631,17 +639,16 @@ function runMatchingAnimation() {
   }, 100);
 
   // Animate user counter
-  var target = 2400000;
+  var target = 2400;
   var counter = document.getElementById('counter-users');
   if (!counter) return;
-  var start = 0;
   var duration = 1500;
   var startTime = null;
   function animateCount(timestamp) {
     if (!startTime) startTime = timestamp;
     var progress = Math.min((timestamp - startTime) / duration, 1);
     var current = Math.floor(progress * target);
-    counter.textContent = (current / 10000).toFixed(1) + 'M';
+    counter.textContent = current.toLocaleString('th-TH');
     if (progress < 1) requestAnimationFrame(animateCount);
   }
   requestAnimationFrame(animateCount);
