@@ -664,52 +664,35 @@ document.addEventListener('keydown', function (e) {
 
 
 const slideRightBtn = document.getElementById('slideRightBtn');
-    const slideLeftBtn = document.getElementById('slideLeftBtn');
-    const slider = document.getElementById('promo-slider');
+const slideLeftBtn = document.getElementById('slideLeftBtn');
+const slider = document.getElementById('promo-slider');
 
-    function handleButtonVisibility() {
-      // 1. ตรวจสอบปุ่มซ้าย (ถ้าเลื่อนไปแล้วเกิน 10px ให้โผล่ปุ่ม)
-      if (slider.scrollLeft > 10) {
-        slideLeftBtn.classList.remove('hidden');
-      } else {
-        slideLeftBtn.classList.add('hidden');
-      }
+if (slider && slideRightBtn && slideLeftBtn) {
+  function handleButtonVisibility() {
+    slideLeftBtn.classList.toggle('hidden', slider.scrollLeft <= 10);
+    const maxScroll = slider.scrollWidth - slider.clientWidth;
+    slideRightBtn.classList.toggle('hidden', slider.scrollLeft >= maxScroll - 10);
+  }
+  slideRightBtn.addEventListener('click', () => slider.scrollBy({ left: 336, behavior: 'smooth' }));
+  slideLeftBtn.addEventListener('click', () => slider.scrollBy({ left: -336, behavior: 'smooth' }));
+  slider.addEventListener('scroll', handleButtonVisibility);
+  window.addEventListener('resize', handleButtonVisibility);
+  handleButtonVisibility();
+}
 
-      // 2. ตรวจสอบปุ่มขวา (ถ้าเลื่อนจนสุดขอบขวาแล้ว ให้ซ่อนปุ่ม)
-      const maxScroll = slider.scrollWidth - slider.clientWidth;
-      if (slider.scrollLeft >= maxScroll - 10) {
-        slideRightBtn.classList.add('hidden');
-      } else {
-        slideRightBtn.classList.remove('hidden');
-      }
-    }
+const fRightBtn = document.getElementById('flightRightBtn');
+const fLeftBtn = document.getElementById('flightLeftBtn');
+const fSlider = document.getElementById('flight-slider');
 
-    slideRightBtn.addEventListener('click', () => {
-      slider.scrollBy({ left: 336, behavior: 'smooth' }); 
-    });
-
-    slideLeftBtn.addEventListener('click', () => {
-      slider.scrollBy({ left: -336, behavior: 'smooth' }); 
-    });
-
-    // ดักจับการ Scroll ทุกรูปแบบ (ทั้งกดปุ่ม และเอานิ้วไถบนมือถือ)
-    slider.addEventListener('scroll', handleButtonVisibility);
-    
-    // ดักไว้กรณีผู้ใช้กด ย่อ-ขยาย หน้าต่างเบราว์เซอร์
-    window.addEventListener('resize', handleButtonVisibility);
-
-    const fRightBtn = document.getElementById('flightRightBtn');
-    const fLeftBtn = document.getElementById('flightLeftBtn');
-    const fSlider = document.getElementById('flight-slider');
-
-    function updateFlightButtons() {
-      fLeftBtn.classList.toggle('hidden', fSlider.scrollLeft <= 10);
-      const maxScroll = fSlider.scrollWidth - fSlider.clientWidth;
-      fRightBtn.classList.toggle('hidden', fSlider.scrollLeft >= maxScroll - 10);
-    }
-
-    fRightBtn.addEventListener('click', () => fSlider.scrollBy({ left: 336, behavior: 'smooth' }));
-    fLeftBtn.addEventListener('click', () => fSlider.scrollBy({ left: -336, behavior: 'smooth' }));
-    fSlider.addEventListener('scroll', updateFlightButtons);
-    window.addEventListener('resize', updateFlightButtons);
-    updateFlightButtons();
+if (fSlider && fRightBtn && fLeftBtn) {
+  function updateFlightButtons() {
+    fLeftBtn.classList.toggle('hidden', fSlider.scrollLeft <= 10);
+    const maxScroll = fSlider.scrollWidth - fSlider.clientWidth;
+    fRightBtn.classList.toggle('hidden', fSlider.scrollLeft >= maxScroll - 10);
+  }
+  fRightBtn.addEventListener('click', () => fSlider.scrollBy({ left: 336, behavior: 'smooth' }));
+  fLeftBtn.addEventListener('click', () => fSlider.scrollBy({ left: -336, behavior: 'smooth' }));
+  fSlider.addEventListener('scroll', updateFlightButtons);
+  window.addEventListener('resize', updateFlightButtons);
+  updateFlightButtons();
+}
